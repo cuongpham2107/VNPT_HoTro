@@ -26,87 +26,17 @@
   <div class="container-fluid c2-about" id="c2">
     <div class="container">
       <div class="row">      
-        <div class="col-lg-6 col-sm-6 col-md-6">
+        <div class="col-lg-12 col-sm-12 col-md-12">
           <h3 style="text-align: left;">{{ $about->excerpt }}</h3>
           {!! $about->body !!}
         </div>
-        <div class="col-lg-56 col-sm-6 col-md-6">
-          <img src="{{ Voyager::image($about->image) }}" loading="lazy" alt="{{ $about->excerpt }}" style="width: 100%; max-height: 500px; object-fit: cover;">
-        </div>
+        
       </div>
     </div>
   </div>
 
 
-  @if (count($whys) > 0)
-    <style>
-      .vi-sao .flex {
-        display: flex;
-      }
-      .vi-sao .flex .img {
-        width: 50px;
-        height: 50px;
-        flex: none;
-        overflow: hidden;
-        margin-top: 10px; 
-      }
-      .vi-sao .flex .img img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .vi-sao .flex h4 {
-        font-size: 16px !important;
-        font-weight: normal !important;
-        padding: 0 0 0 15px;
-        text-transform: initial !important;
-      }
-
-      .c-flex {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-      }
-
-      .c-col-3 {
-        /* wi */
-      }
-    </style>
-
-    <div class="container-fluid" id="c3" style="background: #cfe4ffb5">
-      <div class="container" id="dichvu">
-        <div class="row" style="margin-bottom: 10px;">
-          <div class="col-lg-12 col-sm-12 col-md-12 text-center text-c3">
-            <h3 style="color: #1d64a4;">VÌ SAO LỰA CHỌN GIÚP VIỆC AN PHƯƠNG?</h3>
-          </div>
-        </div>
-        <div class="c-flex vi-sao">
-          @foreach ($whys as $why)
-            <div class="col-lg-4 col-sm-6 col-12"> 
-              <div class="flex">
-                <div class="img">
-                  <img src="{{ asset('/assets/images/v.png') }}" alt="v">
-                </div>
-                <h4 style="color: initial !important;">{!! $why->description !!}</h4>
-              </div>
-              {{-- <a href="/services/{{ $why->slug }}">
-                <div class="dich-vu text-center">
-                  <div class="dich-vu-img">
-                    <img src="{{ Voyager::image($why->image) }}" alt="{{ $why->title }}" loading="lazy">
-                  </div>
-                  <div class="noi-dung">
-                    <h4>{{ $why->title }}</h4>
-                    <img src="{{ asset('assets/images/thanhvang.webp') }}" alt="" loading="lazy">
-                    <div style="text-align: left;display: flex;justify-content: center;">{!! $why->description !!}</div>
-                  </div>
-                </div>
-              </a> --}}
-            </div>
-          @endforeach
-        </div>
-      </div>
-    </div>
-  @endif
+ 
 
   {{-- @if (count($personnels) > 0)
     <style>

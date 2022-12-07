@@ -93,6 +93,7 @@
                             <div class="blog-title-holder">
                                 <h4>{{ $blog->title }}</h4>
                             </div>
+                            <p>{!!$blog->excerpt!!}</p>
                             <div class="blog-text">
                                 <a href="{{ route('blog.detail', $blog->slug) }}" class="hvr-bounce-to-right">Xem thêm</a>
                             </div>

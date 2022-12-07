@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use TCG\Voyager\Models\Page;
 use TCG\Voyager\Models\Post;
+use TCG\Voyager\Models\Category;
 
 class HomeController extends Controller
 {
@@ -25,18 +26,21 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $category1 = Category::where('slug', 'bai-viet')->first();
+        $category2 = Category::where('slug', 'goi-cuoc')->first();
         $banners= Banner::where('type', 'banner')->get();
         $aboutHome = Page::where(['slug' => 'about-home', 'status' => 'ACTIVE'])->first();
         $achievement = Page::where(['slug' => 'thanh-tuu', 'status' => 'ACTIVE'])->first();
         $page = Page::where(['slug' => 'home', 'status' => 'ACTIVE'])->first();
         $aboutUs = Page::where(['slug' => 'about-us-home-page', 'status' => 'ACTIVE'])->first();
-        $posts  =   Post::where('status', 'PUBLISHED')->latest()->limit(3)->get();
+        $posts  =   Post::where('category_id', $category1->id)->where('status', 'PUBLISHED')->latest()->limit(3)->get();
+        $post  =   Post::where('category_id', $category2->id)->where('status', 'PUBLISHED')->latest()->limit(3)->get();
         $products= Product::where('status', 'ACTIVE')->limit(4)->get();
-        $services= Staticdata::where(['type' => 'linh-vuc', 'status' => 'ACTIVE'])->limit(3)->get();
+        $services= Staticdata::where(['type' => 'ho-tro', 'status' => 'ACTIVE'])->limit(3)->get();
         $procedures = Staticdata::where(['type' => 'quy-trinh', 'status' => 'ACTIVE'])->get();
         $partners = Staticdata::where(['type' => 'doi-tac', 'status' => 'ACTIVE'])->get();
 
-        return view('frontend.homepage.index', compact('aboutHome', 'banners', 'achievement', 'page', 'aboutUs', 'posts', 'products', 'services','procedures', 'partners'));
+        return view('frontend.homepage.index', compact('aboutHome', 'banners', 'achievement', 'page', 'aboutUs', 'posts', 'products', 'services','procedures', 'partners','post'));
     }
 
     /**

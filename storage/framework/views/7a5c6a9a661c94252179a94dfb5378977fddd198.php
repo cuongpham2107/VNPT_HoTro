@@ -5,31 +5,31 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="{{ $pageMeta['meta_description'] ?? setting('site.description') }}"/>
-    <meta name="content" content="{{ $pageMeta['meta_content'] ?? setting('site.content') }}"/>
+    <meta name="description" content="<?php echo e($pageMeta['meta_description'] ?? setting('site.description')); ?>"/>
+    <meta name="content" content="<?php echo e($pageMeta['meta_content'] ?? setting('site.content')); ?>"/>
 
-    <title>{{ $pageMeta['title'] ?? setting('site.title') }}</title>
+    <title><?php echo e($pageMeta['title'] ?? setting('site.title')); ?></title>
 
-    <link rel="shortcut icon" href="{{ \TCG\Voyager\Facades\Voyager::image(setting('site.logo')) }}" type="image/png">
+    <link rel="shortcut icon" href="<?php echo e(\TCG\Voyager\Facades\Voyager::image(setting('site.logo'))); ?>" type="image/png">
 
-    <meta property="og:image" content="{{ \TCG\Voyager\Facades\Voyager::image($pageMeta['image'] ?? setting('site.logo')) }}" />
-    <meta property="og:url" content="{{ \Request::fullUrl() }}" />
+    <meta property="og:image" content="<?php echo e(\TCG\Voyager\Facades\Voyager::image($pageMeta['image'] ?? setting('site.logo'))); ?>" />
+    <meta property="og:url" content="<?php echo e(\Request::fullUrl()); ?>" />
     <meta property="og:type" content="Website" />
-    <meta property="og:title" content="{{ $pageMeta['title'] ?? setting('site.title') }}" />
-    <meta property="og:description" content="{{ $pageMeta['meta_description'] ?? setting('site.description') }}" />
-    <meta property="og:content" content="{{ $pageMeta['meta_content'] ?? setting('site.content') }}" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="<?php echo e($pageMeta['title'] ?? setting('site.title')); ?>" />
+    <meta property="og:description" content="<?php echo e($pageMeta['meta_description'] ?? setting('site.description')); ?>" />
+    <meta property="og:content" content="<?php echo e($pageMeta['meta_content'] ?? setting('site.content')); ?>" />
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <!-- GOOGLE WEB FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
     <!-- END OF GOOGLE WEB FONTS -->
 
     <!-- BOOTSTRAP & STYLES -->
-    <script src='{{ asset('assets/scripts/jquery.min.js') }}' type='text/javascript'></script>
-    <link href='{{ asset('assets/styles/bootstrap.min.css') }}' rel='stylesheet' type='text/css' media='all' />
-    <link href='{{ asset('assets/styles/font-awesome.min.css') }}' rel='stylesheet' type='text/css' media='all' />
-    <link href='{{ asset('assets/styles/style.css') }}' rel='stylesheet' type='text/css' media='all' />
-    <link href='{{ asset('assets/styles/custom.css') }}' rel='stylesheet' type='text/css' media='all' />
+    <script src='<?php echo e(asset('assets/scripts/jquery.min.js')); ?>' type='text/javascript'></script>
+    <link href='<?php echo e(asset('assets/styles/bootstrap.min.css')); ?>' rel='stylesheet' type='text/css' media='all' />
+    <link href='<?php echo e(asset('assets/styles/font-awesome.min.css')); ?>' rel='stylesheet' type='text/css' media='all' />
+    <link href='<?php echo e(asset('assets/styles/style.css')); ?>' rel='stylesheet' type='text/css' media='all' />
+    <link href='<?php echo e(asset('assets/styles/custom.css')); ?>' rel='stylesheet' type='text/css' media='all' />
     <link
       rel="stylesheet"
       href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
@@ -38,7 +38,7 @@
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
     <!-- hostline zalo, facebook -->
-    <link href='{{ asset('assets/css/custom.css') }}' rel='stylesheet' type='text/css' media='all' />
+    <link href='<?php echo e(asset('assets/css/custom.css')); ?>' rel='stylesheet' type='text/css' media='all' />
 
     <style>
       #layout-page-main img {
@@ -46,7 +46,7 @@
         height: auto;
       }
     </style>
-    @yield('style')
+    <?php echo $__env->yieldContent('style'); ?>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JY7GDVCWWB"></script>
@@ -62,42 +62,43 @@
       {
         "@context": "http://schema.org",
         "@type": "Website",
-        "title": "{{ $pageMeta['title'] ?? setting('site.title') }}",
-        "description": "{{ $pageMeta['meta_description'] ?? setting('site.description') }}",
+        "title": "<?php echo e($pageMeta['title'] ?? setting('site.title')); ?>",
+        "description": "<?php echo e($pageMeta['meta_description'] ?? setting('site.description')); ?>",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": "{{ setting('site.address') }}"
+          "addressLocality": "<?php echo e(setting('site.address')); ?>"
         },
-        "telephone": "{{ setting('site.phone') }}",
-        "email" : "{{ setting('site.email') }}"
+        "telephone": "<?php echo e(setting('site.phone')); ?>",
+        "email" : "<?php echo e(setting('site.email')); ?>"
       }
     </script>
 </head>
 
 <body>
 
-  @include('frontend.layouts.partials.header')
+  <?php echo $__env->make('frontend.layouts.partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
   
-  @include('frontend.layouts.partials.footer')
+  <?php echo $__env->make('frontend.layouts.partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
   <div class="hotline-phone-ring-wrap float-icon-hotline">
       <ul class="left-icon hotline">
-{{--          <li class="hotline_float_icon" style="left: 33px; bottom: -30px;">--}}
-{{--              <a target="_blank" rel="nofollow" id="messengerButton"--}}
-{{--                href="https://zalo.me/"><i--}}
-{{--                      class="fa fa-zalo animated infinite tada"></i><span>Zalo</span></a></li>--}}
-{{--          <li>--}}
+
+
+
+
+
               <div class="hotline-phone-ring">
                   <div class="hotline-phone-ring-circle"></div>
                   <div class="hotline-phone-ring-circle-fill"></div>
-                  <div class="hotline-phone-ring-img-circle"><a href="tel:{{ setting('site.phone') }}" class="pps-btn-img">
+                  <div class="hotline-phone-ring-img-circle"><a href="tel:<?php echo e(setting('site.phone')); ?>" class="pps-btn-img">
                           <img src="https://netweb.vn/img/hotline/icon.png" alt="so dien thoai" width="50" loading="lazy"> </a></div>
               </div>
               <div class="hotline-bar">
-                  <a class="text-hotline" href="tel:{{ setting('site.phone') }}">
-                      {{ setting('site.phone') }}
+                  <a class="text-hotline" href="tel:<?php echo e(setting('site.phone')); ?>">
+                      <?php echo e(setting('site.phone')); ?>
+
                   </a>
               </div>
           </li>
@@ -107,9 +108,9 @@
 
   <!-- JAVASCRIPT FILES -->
 
-  <script src='{{ asset('assets/scripts/bootstrap.min.js?v=233') }}' type='text/javascript'></script>
-  <script src='{{ asset('assets/scripts/owl.carousel.js') }}' type='text/javascript'></script>
-  <link href='{{ asset('assets/styles/owl.carousel.css') }}' rel='stylesheet' type='text/css' media='all' />
+  <script src='<?php echo e(asset('assets/scripts/bootstrap.min.js?v=233')); ?>' type='text/javascript'></script>
+  <script src='<?php echo e(asset('assets/scripts/owl.carousel.js')); ?>' type='text/javascript'></script>
+  <link href='<?php echo e(asset('assets/styles/owl.carousel.css')); ?>' rel='stylesheet' type='text/css' media='all' />
 
   <!-- JAVASCRIPT scroll-top -->
   <script>
@@ -194,7 +195,8 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-  @yield('js')
+  <?php echo $__env->yieldContent('js'); ?>
 </body>
 
 </html>
+<?php /**PATH /home/tinhtoan/domains/tinhtoan.kennatech.vn/public_html/resources/views/frontend/layouts/default.blade.php ENDPATH**/ ?>

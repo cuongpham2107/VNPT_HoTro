@@ -1124,9 +1124,10 @@ div#c7 h2 {
   color: #cd2927;
 }
 .blog-single-post .blog-post-meta h4 {
-  text-transform: capitalize;
-  margin-bottom: 7px;
-  margin-top: 20px;
+  text-align: justify;
+    margin-bottom: 7px;
+    margin-top: 20px;
+    padding: 0px 10px 0px 10px;
 }
 .blog-single-post .blog-post-meta ul {
   margin-bottom: 15px;
@@ -1178,7 +1179,7 @@ div#c7 h2 {
   font-size: 14px;
 }
 .blog-single-post .blog-post-meta {
-  height: 160px;
+  height: 200px;
   background: #fbfcfc;
   border-left: 1px solid #efeff1;
   border-right: 1px solid #efeff1;
